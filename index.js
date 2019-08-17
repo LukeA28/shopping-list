@@ -1,5 +1,5 @@
 $(function () {
-    $('#js-shopping-list-form').submit(event => {
+    $('#js-shopping-list-form').submit(function(event) {
         event.preventDefault();
         const $itemName = $('input[name="shopping-list-entry"]').val();
         $('.shopping-list').append(
@@ -14,13 +14,21 @@ $(function () {
             </button>
             </div>
         </li>`);
+        $('.shopping-item-toggle').on('click', function(event) {
+            event.preventDefault();
+            $(this).closest('li').find('.shopping-item').toggleClass('shopping-item__checked');
+        });
+        $('.shopping-item-delete').on('click', function(event) {
+            event.preventDefault();
+            $(this).closest('li').remove();
+        });
     });
-    $('.shopping-item-toggle').click(event => {
+    $('.shopping-item-toggle').on('click', function(event) {
         event.preventDefault();
         $(this).closest('li').find('.shopping-item').toggleClass('shopping-item__checked');
     });
-    $('.shopping-item-delete').click(event => {
+    $('.shopping-item-delete').on('click', function(event) {
         event.preventDefault();
         $(this).closest('li').remove();
-    })
+    });
 });
